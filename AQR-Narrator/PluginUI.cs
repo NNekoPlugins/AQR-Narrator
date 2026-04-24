@@ -1,5 +1,4 @@
 using Dalamud.Interface.Windowing;
-using ImGuiNET;
 
 namespace NNekoPlugins.AqrNarrator;
 
