@@ -4,15 +4,15 @@ on:
   push:
     branches: [main]
     paths:
-      - "NNekoTemplate/**/*.cs"
-      - "NNekoTemplate/**/*.csproj"
-      - "NNekoTemplate/**/*.resx"
+      - "AQR-Narrator/**/*.cs"
+      - "AQR-Narrator/**/*.csproj"
+      - "AQR-Narrator/**/*.resx"
   pull_request:
     branches: [main]
     paths:
-      - "NNekoTemplate/**/*.cs"
-      - "NNekoTemplate/**/*.csproj"
-      - "NNekoTemplate/**/*.resx"
+      - "AQR-Narrator/**/*.cs"
+      - "AQR-Narrator/**/*.csproj"
+      - "AQR-Narrator/**/*.resx"
     types: [ready_for_review, opened, synchronize, reopened]
   workflow_dispatch:
 
@@ -44,23 +44,23 @@ jobs:
 
       - name: Check for Lint Errors
         id: lint
-        working-directory: NNekoTemplate
+        working-directory: AQR-Narrator
         continue-on-error: true
         run: | 
           dotnet format --verify-no-changes > lint.txt 2>&1
 
       - name: Report Lint Errors
-        working-directory: NNekoTemplate
+        working-directory: AQR-Narrator
         if : steps.lint.outcome == 'failure'
         run: |
           cat lint.txt | sed -E 's/^(.*)$/::warning:: \1/g'
 
       - name: Restore Project
-        working-directory: NNekoTemplate
+        working-directory: AQR-Narrator
         run: dotnet restore
 
       - name: Build Project
-        working-directory: NNekoTemplate
+        working-directory: AQR-Narrator
         run: | 
           dotnet build -c ${{ matrix.build_mode }}
-          echo "Checksum: $(sha512sum bin/x64/${{ matrix.build_mode }}/NNekoTemplate.dll)"
+          echo "Checksum: $(sha512sum bin/x64/${{ matrix.build_mode }}/AQR-Narrator.dll)"

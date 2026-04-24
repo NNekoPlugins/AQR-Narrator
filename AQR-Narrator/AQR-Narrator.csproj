@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/14.0.2">
   <PropertyGroup>
-    <Name>NNekoTemplate</Name>
+    <Name>AQR-Narrator</Name>
     <Author>NaughtyNeko</Author>
     <Punchline></Punchline>
     <Description></Description>
@@ -44,7 +44,7 @@
 
     <Content Include="Data\NNeko.png" />
 
-    <Content Include="NNekoTemplate.json" />
+    <Content Include="AQR-Narrator.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -52,7 +52,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="NNekoTemplate.json">
+    <None Update="AQR-Narrator.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <EmbeddedResource Include="Data\NNeko.png" />

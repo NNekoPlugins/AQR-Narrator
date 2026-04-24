@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: NNekoTemplate/
+        working-directory: AQR-Narrator/
         shell: bash
     steps:
       - name: Checkout Repository
@@ -40,7 +40,7 @@ jobs:
         run: dotnet build -c Release --no-restore --nologo -o ./bin/Release
 
       - name: Generate Checksums
-        working-directory: NNekoTemplate/bin/Release/NNekoTemplate
+        working-directory: AQR-Narrator/bin/Release/AQR-Narrator
         run: |
           sha512sum latest.zip >> checksums.sha512
 
@@ -49,8 +49,8 @@ jobs:
         with:
           version: ${{ github.ref_name }}
           files: |
-            NNekoTemplate/bin/Release/NNekoTemplate/latest.zip
-            NNekoTemplate/bin/Release/NNekoTemplate/checksums.sha512
+            AQR-Narrator/bin/Release/AQR-Narrator/latest.zip
+            AQR-Narrator/bin/Release/AQR-Narrator/checksums.sha512
           prerelease: false
           append_body: true
           body_path: .github/release-notices.md
