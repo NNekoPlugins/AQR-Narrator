@@ -1,0 +1,19 @@
+{
+  "Author": "NaughtyNeko",
+  "Name": "NNekoTemplate",
+  "InternalName": "NNekoTemplate",
+  "Punchline": "",
+  "Description": "",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "other",
+    "NaughtyNeko",
+    "NNeko"
+  ],
+  "CategoryTags": [
+    "Other"
+  ],
+  "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/NNekoTemplate/main/NNekoTemplate/Data/NNeko.png",
+  "RepoUrl": "https://github.com/NNekoPlugins/NNekoTemplate",
+  "Changelog": "- Initial proof of concept."
+}
