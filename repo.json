@@ -4,7 +4,7 @@
         "Name": "AqrNarrator",
         "InternalName": "AqrNarrator",
         "AssemblyVersion": "0.0.0.1",
-        "Punchline": "",
+        "Punchline": "Narrates A Quest Reborn dialog into a separate window.",
         "Description": "",
         "ApplicableVersion": "any",
         "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator",
