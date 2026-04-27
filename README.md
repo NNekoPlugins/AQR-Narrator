@@ -4,7 +4,7 @@
 
   
 ### AqrNarrator
-A companion plugin for **A Quest Reborn** that forwards quest dialog text into `/echo` or another safe, non‑public chat channel.
+Narrates A Quest Reborn dialog into a separate window.
 
 [![Latest Stable](https://img.shields.io/github/v/release/NNekoPlugins/AqrNarrator?color=blue&label=Stable)](https://github.com/NNekoPlugins/AqrNarrator/releases/latest)
 
@@ -16,8 +16,7 @@ A companion plugin for **A Quest Reborn** that forwards quest dialog text into `
 
 ## Features
 - Automatically narrates AQR dialog
-- Supports both event-based and reflection-based extraction
-- Toggleable enable/disable
+- Toggleable output window
 - Zero-configuration, lightweight, safe
 
 ## Installation
