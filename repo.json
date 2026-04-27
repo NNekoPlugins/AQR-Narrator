@@ -1,22 +1,22 @@
 [
     {
         "Author": "NaughtyNeko",
-        "Name": "AQR-Narrator",
-        "InternalName": "AQR-Narrator",
+        "Name": "AqrNarrator",
+        "InternalName": "AqrNarrator",
         "AssemblyVersion": "0.0.0.0",
         "Punchline": "",
         "Description": "",
         "ApplicableVersion": "any",
-        "RepoUrl": "https://github.com/NNekoPlugins/AQR-Narrator",
+        "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator",
         "Tags": [ "other", "NaughtyNeko", "NNeko" ],
         "DalamudApiLevel": 14,
         "LoadPriority": 69,
-        "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/AQR-Narrator/main/AQR-Narrator/Data/NNeko.png",
+        "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/AqrNarrator/main/AqrNarrator/Data/NNeko.png",
         "IsHide": "False",
         "IsTestingExclusive": "False",
         "Changelog": "",
-        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AQR-Narrator/releases/download/v0.0.0.0/latest.zip",
-        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AQR-Narrator/releases/download/v0.0.0.0/latest.zip",
-        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AQR-Narrator/releases/download/v0.0.0.0/latest.zip"
+        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.0/latest.zip",
+        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.0/latest.zip",
+        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.0/latest.zip"
     }
 ]
