@@ -4,7 +4,7 @@
         <Name>AqrNarrator</Name>
         <Author>NaughtyNeko</Author>
         <Punchline>Narrates A Quest Reborn dialog into a separate window.</Punchline>
-        <Description></Description>
+        <Description>A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.</Description>
         <Tags>NNeko,NaughtyNeko</Tags>
         <WarningLevel>4</WarningLevel>
         <PackageLicenseExpression>APGL-3.0-or-later</PackageLicenseExpression>
