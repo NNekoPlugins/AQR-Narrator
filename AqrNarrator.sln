@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 18
+VisualStudioVersion = 18.5.11716.220
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AqrNarrator", "AqrNarrator\AqrNarrator.csproj", "{AE7A4126-19D6-B5CF-EADB-3C480BDB68F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE7A4126-19D6-B5CF-EADB-3C480BDB68F8}.Debug|x64.ActiveCfg = Debug|x64
+		{AE7A4126-19D6-B5CF-EADB-3C480BDB68F8}.Debug|x64.Build.0 = Debug|x64
+		{AE7A4126-19D6-B5CF-EADB-3C480BDB68F8}.Release|x64.ActiveCfg = Release|x64
+		{AE7A4126-19D6-B5CF-EADB-3C480BDB68F8}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B17E85B1-5F60-4440-9F9A-3DDE877E8CDF}
+	EndGlobalSection
+EndGlobal
