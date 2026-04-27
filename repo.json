@@ -3,7 +3,7 @@
         "Author": "NaughtyNeko",
         "Name": "AqrNarrator",
         "InternalName": "AqrNarrator",
-        "AssemblyVersion": "0.0.0.0",
+        "AssemblyVersion": "0.0.0.1",
         "Punchline": "",
         "Description": "",
         "ApplicableVersion": "any",
@@ -15,8 +15,8 @@
         "IsHide": "False",
         "IsTestingExclusive": "False",
         "Changelog": "",
-        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.0/latest.zip",
-        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.0/latest.zip",
-        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.0/latest.zip"
+        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.1/latest.zip",
+        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.1/latest.zip",
+        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.1/latest.zip"
     }
 ]
