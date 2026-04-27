@@ -3,7 +3,7 @@
 <span><img src="./Data/NNeko.png" alt="Rendering of a Fantasy stone arch, bedecked with crystals, and filled with a swirling, arcane portal." width="15%"></span>
 
   
-### AQR Narrator
+# AQR Narrator
 Narrates A Quest Reborn dialog into a separate window.
 
 [![Latest Stable](https://img.shields.io/github/v/release/NNekoPlugins/AqrNarrator?color=blue&label=Stable)](https://github.com/NNekoPlugins/AqrNarrator/releases/latest)
@@ -12,11 +12,17 @@ Narrates A Quest Reborn dialog into a separate window.
 
 </div>
 
+##  Description
+A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.
+
 ---
 
 ## Features
 - Automatically narrates AQR dialog
-- Toggleable output window
+- Toggleable output window via slash command
+    ```
+    /aqrwin
+    ```
 - Zero-configuration, lightweight, safe
 
 ## Installation
