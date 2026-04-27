@@ -3,7 +3,7 @@
     <PropertyGroup>
         <Name>AqrNarrator</Name>
         <Author>NaughtyNeko</Author>
-        <Punchline></Punchline>
+        <Punchline>Narrates A Quest Reborn dialog into a separate window.</Punchline>
         <Description></Description>
         <Tags>NNeko,NaughtyNeko</Tags>
         <WarningLevel>4</WarningLevel>
