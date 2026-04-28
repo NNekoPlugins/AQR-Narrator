@@ -2,7 +2,9 @@ using Dalamud.Game.Command;
 using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
+//using Dalamud.Plugin.Ipc;
 using Dalamud.Plugin.Services;
+using FFXIVClientStructs.FFXIV.Component.GUI;
 using System.Reflection;
 
 namespace AqrNarrator
@@ -13,6 +15,8 @@ namespace AqrNarrator
         [PluginService] internal static IFramework Framework { get; private set; } = null!;
         [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
         [PluginService] internal static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
+        [PluginService] internal static IGameGui GameGui { get; private set; } = null!;
+
 
         public static WindowSystem WindowSystem = new("AqrNarrator");
         private NarratorWindow _window;
@@ -21,13 +25,17 @@ namespace AqrNarrator
         private FieldInfo? _fieldText;
         private FieldInfo? _fieldName;
         private PropertyInfo? _propIsOpen;
+        //private ICallGateSubscriber<string, object>? _chat2AddLine;
 
         public static bool AqrReady { get; private set; } = false;
 
+        private bool _firstLineCompleted = false;
+        private string _lastTargetText = "";
+        private bool _wasOpenLastFrame = false;
 
-        private string _lastSeenText = "";
-        private int _stableFrames = 0;
-        private const int FramesRequiredForStable = 10; // ~0.16s at 60fps
+        private readonly string _logPath = Path.Combine(AqrNarrator.PluginInterface.ConfigDirectory.FullName, "narrator_log.txt");
+        private readonly string _sessionPath = Path.Combine(PluginInterface.ConfigDirectory.FullName, "session_log.txt");
+
 
         public AqrNarrator()
         {
@@ -38,6 +46,7 @@ namespace AqrNarrator
             _window.IsOpen = true;
             PluginInterface.UiBuilder.Draw += DrawUI;
             Framework.Update += OnFrameworkUpdate;
+            //_chat2AddLine = PluginInterface.GetIpcSubscriber<string, object>("ChatTwo.AddLine");
 
             CommandManager.AddHandler("/aqrwin", new CommandInfo((_, _) =>
             {
@@ -47,8 +56,31 @@ namespace AqrNarrator
             {
                 HelpMessage = "Toggle AQR Narrator window"
             });
-        }
 
+            CommandManager.AddHandler("/aqrnewquest", new CommandInfo((_, _) =>
+            {
+                ClearSession();
+            })
+            {
+                HelpMessage = "Clear narrator session for a new quest"
+            });
+
+            CommandManager.AddHandler("/hidechat", new CommandInfo((_, _) =>
+            {
+                SetChatLogVisible(false);
+            })
+            {
+                HelpMessage = "Hide the vanilla chat log window"
+            });
+
+            CommandManager.AddHandler("/showchat", new CommandInfo((_, _) =>
+            {
+                SetChatLogVisible(true);
+            })
+            {
+                HelpMessage = "Show the vanilla chat log window"
+            });
+        }
 
         public void Dispose()
         {
@@ -63,37 +95,76 @@ namespace AqrNarrator
             if (!EnsureAqrResolved())
                 return;
 
-            string raw = _fieldText?.GetValue(_eventWindow) as string ?? "";
-            string text = raw.Trim();
-            string name = _fieldName?.GetValue(_eventWindow) as string ?? "Unknown";
             bool isOpen = (bool)(_propIsOpen?.GetValue(_eventWindow) ?? false);
+            string current = _fieldText?.GetValue(_eventWindow) as string ?? "";
+            string name = _fieldName?.GetValue(_eventWindow) as string ?? "Unknown";
 
-            bool hasText = isOpen && !string.IsNullOrWhiteSpace(text);
+            // AQR's full line being typed
+            var targetField = _eventWindow.GetType().GetField("_targetText", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            // If no text, reset stability and return
-            if (!hasText)
+            string target = targetField?.GetValue(_eventWindow) as string ?? "";
+
+            //
+            // CASE 1: Window just opened
+            //
+            if (isOpen && !_wasOpenLastFrame)
             {
-                _lastSeenText = "";
-                _stableFrames = 0;
+                // Detect new quest start
+                if (target.StartsWith("QuestStart:")) // or whatever AQR exposes
+                    ClearSession();
+
+                _wasOpenLastFrame = true;
+                _lastTargetText = target;
+                _firstLineCompleted = false;
                 return;
             }
 
-            // If text changed, reset stability timer
-            if (text != _lastSeenText)
+            //
+            // CASE 2: Window is open
+            //
+            if (isOpen)
             {
-                _lastSeenText = text;
-                _stableFrames = 0;
+                // Detect when the first line finishes typing
+                if (!_firstLineCompleted && current == target)
+                {
+                    _firstLineCompleted = true;
+                }
+
+                // Player clicked → target changed → finalize previous line
+                if (target != _lastTargetText)
+                {
+                    // Finalize previous line ONLY if it finished typing
+                    if (_firstLineCompleted && !string.IsNullOrWhiteSpace(_lastTargetText))
+                    {
+                        PluginLog.Information("[AqrNarrator] Finalizing (advance): \"" + _lastTargetText + "\"");
+                        PrintNarration(name, _lastTargetText);
+                    }
+
+                    // Shift to new line
+                    _lastTargetText = target;
+                    _firstLineCompleted = false;
+                }
+
                 return;
             }
 
-            // Text is unchanged this frame → increment stability
-            _stableFrames++;
-
-            // If text has been stable long enough → finalize
-            if (_stableFrames == FramesRequiredForStable)
+            //
+            // CASE 3: Window just closed → finalize last line
+            //
+            if (!isOpen && _wasOpenLastFrame)
             {
-                PluginLog.Information("[AqrNarrator] Finalizing stable line: \"" + text + "\"");
-                PrintNarration(name, text);
+                _wasOpenLastFrame = false;
+
+                // Only finalize if typing finished
+                if (_firstLineCompleted && !string.IsNullOrWhiteSpace(target))
+                {
+                    PluginLog.Information("[AqrNarrator] Finalizing on close: \"" + target + "\"");
+                    PrintNarration(name, target);
+                }
+
+                _lastTargetText = "";
+                _firstLineCompleted = false;
+                return;
             }
         }
 
@@ -174,6 +245,31 @@ namespace AqrNarrator
             }
         }
 
+        private void LogToFile(string line)
+        {
+            try
+            {
+                File.AppendAllText(_logPath, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} {line}\n");
+            }
+            catch { }
+        }
+
+        private void LogSession(string line)
+        {
+            File.AppendAllText(_sessionPath, line + "\n");
+        }
+
+        private void ClearSession()
+        {
+            _window.ClearNarratorWindow();
+            _lastTargetText = "";
+            _firstLineCompleted = false;
+            _wasOpenLastFrame = false;
+            File.WriteAllText(_sessionPath, "");
+
+            PluginLog.Information("[AqrNarrator] Session cleared (new quest or reset).");
+        }
+
         public void DrawUI()
         {
             WindowSystem.Draw();
@@ -181,8 +277,43 @@ namespace AqrNarrator
 
         private void PrintNarration(string npc, string line)
         {
-            PluginLog.Information($"[AqrNarrator] Printing line: NPC=\"{npc}\" Text=\"{line}\"");
-            _window.AddLine($"◆ {npc}: {line}");
+            string formatted = $"◆ {npc}: {line}";
+
+            // Send to narrator window
+            _window.AddLine(formatted);
+
+            // Send to Chat2
+            //_chat2AddLine?.InvokeFunc(formatted);
+
+            // Log to file
+            LogToFile(formatted);
+        }
+
+
+        private unsafe void SetChatLogVisible(bool visible)
+        {
+            HideAddon("ChatLog", visible);
+
+            // Hide all chat panels (0–3)
+            for (int i = 0; i < 4; i++)
+            {
+                HideAddon($"ChatLogPanel_{i}", visible);
+            }
+        }
+
+        private unsafe void HideAddon(string name, bool visible)
+        {
+            var addon = GameGui.GetAddonByName(name, 1);
+            if (addon == null || addon.Address == IntPtr.Zero)
+                return; // silently ignore missing addons
+
+            var atk = (AtkUnitBase*)addon.Address;
+            atk->IsVisible = visible;
+
+            if (atk->RootNode != null)
+                atk->RootNode->ToggleVisibility(visible);
+
+            PluginLog.Information($"[AqrNarrator] {name} visibility set to: {visible}");
         }
     }
 }

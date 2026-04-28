@@ -9,12 +9,21 @@ public class NarratorWindow : Window
     private readonly List<string> _lines = new();
 
     public NarratorWindow()
-        : base("AQR Narrator", ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse)
+        : base("AQR Narrator", ImGuiWindowFlags.AlwaysVerticalScrollbar | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse)
     {
         BgAlpha = 0.75f;
         Size = new Vector2(575, 100);
         Position = new Vector2(25, 900);
         RespectCloseHotkey = false;
+        if (ImGui.Button("Clear Log"))
+        {
+            ClearNarratorWindow();
+        }
+    }
+
+    public void ClearNarratorWindow()
+    {
+        _lines.Clear();
     }
 
     public void AddLine(string line)

@@ -9,5 +9,5 @@
     "CategoryTags": [ "Other" ],
     "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/AqrNarrator/main/AqrNarrator/Data/NNeko.png",
     "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator",
-    "Changelog": "- Initial proof of concept."
+    "Changelog": "v0.0.0.2 - First working version\n- Separate window output\n- Toggle narrator window command\n- Vanilla chat visibility commands\n\nv0.0.0.1 - Initial proof of concept."
 }
