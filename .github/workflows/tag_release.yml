@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: AQR-Narrator/
+        working-directory: AqrNarrator/
         shell: bash
     steps:
       - name: Checkout Repository
@@ -40,7 +40,7 @@ jobs:
         run: dotnet build -c Release --no-restore --nologo -o ./bin/Release
 
       - name: Generate Checksums
-        working-directory: AQR-Narrator/bin/Release/AQR-Narrator
+        working-directory: AqrNarrator/bin/Release/AqrNarrator
         run: |
           sha512sum latest.zip >> checksums.sha512
 
@@ -49,8 +49,8 @@ jobs:
         with:
           version: ${{ github.ref_name }}
           files: |
-            AQR-Narrator/bin/Release/AQR-Narrator/latest.zip
-            AQR-Narrator/bin/Release/AQR-Narrator/checksums.sha512
+            AqrNarrator/bin/Release/AqrNarrator/latest.zip
+            AqrNarrator/bin/Release/AqrNarrator/checksums.sha512
           prerelease: false
           append_body: true
           body_path: .github/release-notices.md
