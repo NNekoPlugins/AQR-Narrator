@@ -4,7 +4,7 @@
 
   
 # AQR Narrator
-Narrates A Quest Reborn dialog into a separate window.
+Narrates [A Quest Reborn](https://github.com/Sebane1/AQuestReborn) dialog into a separate window.
 
 [![Latest Stable](https://img.shields.io/github/v/release/NNekoPlugins/AqrNarrator?color=blue&label=Stable)](https://github.com/NNekoPlugins/AqrNarrator/releases/latest)
 
