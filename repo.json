@@ -9,7 +9,7 @@
         "ApplicableVersion": "any",
         "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator",
         "Tags": [ "other", "NaughtyNeko", "NNeko" ],
-        "DalamudApiLevel": 14,
+        "DalamudApiLevel": 15,
         "LoadPriority": 69,
         "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/AqrNarrator/main/AqrNarrator/Data/NNeko.png",
         "IsHide": "False",
