@@ -14,7 +14,7 @@ Narrates [A Quest Reborn](https://github.com/Sebane1/AQuestReborn) dialog into a
 
 ---
 
-##  Description
+## About
 A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.
 
 ## Features
