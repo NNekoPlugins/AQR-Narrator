@@ -44,7 +44,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ECommons" Version="3.1.0.34" />
+        <PackageReference Include="ECommons" Version="3.2.0.2" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,6 +55,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Update="DalamudPackager" Version="15.0.0" />
         <PackageReference Update="DotNet.ReproducibleBuilds" Version="2.0.2" />
     </ItemGroup>
 </Project>
