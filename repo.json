@@ -3,7 +3,7 @@
         "Author": "NaughtyNeko",
         "Name": "AqrNarrator",
         "InternalName": "AqrNarrator",
-        "AssemblyVersion": "0.0.0.3",
+        "AssemblyVersion": "0.0.0.4",
         "Punchline": "Narrates A Quest Reborn dialog into a separate window.",
         "Description": "A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.",
         "ApplicableVersion": "any",
@@ -15,8 +15,8 @@
         "IsHide": "False",
         "IsTestingExclusive": "False",
         "Changelog": "v0.0.0.1 - Initial implementation",
-        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.3/latest.zip",
-        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.3/latest.zip",
-        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.3/latest.zip"
+        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.4/latest.zip",
+        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.4/latest.zip",
+        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.4/latest.zip"
     }
 ]
