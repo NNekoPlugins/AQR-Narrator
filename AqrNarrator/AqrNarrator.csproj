@@ -6,7 +6,7 @@
         <Punchline>Narrates A Quest Reborn dialog into a separate window.</Punchline>
         <Description>A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.</Description>
         <Tags>NNeko,NaughtyNeko</Tags>
-        <Version>0.0.0.4</Version>
+        <Version>0.0.0.5</Version>
         <WarningLevel>4</WarningLevel>
         <PackageLicenseExpression>APGL-3.0-or-later</PackageLicenseExpression>
     </PropertyGroup>
