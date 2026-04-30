@@ -15,10 +15,11 @@ namespace AqrNarrator
         [PluginService] internal static IFramework Framework { get; private set; } = null!;
         [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
         [PluginService] internal static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
+        [PluginService] internal static IWindowSystem WindowSystem {  get; private set; } = null!;
         [PluginService] internal static IGameGui GameGui { get; private set; } = null!;
 
 
-        public static WindowSystem WindowSystem = new("AqrNarrator");
+        //public static WindowSystem WindowSystem = new("AqrNarrator");
         private NarratorWindow _window;
 
         private object? _eventWindow;
@@ -37,7 +38,7 @@ namespace AqrNarrator
         private readonly string _sessionPath = Path.Combine(PluginInterface.ConfigDirectory.FullName, "session_log.txt");
 
 
-        public AqrNarrator()
+        public AqrNarrator(IDalamudPluginInterface pluginInterface, IWindowSystem windowSystem)
         {
             PluginLog.Information("[AqrNarrator] Constructor fired.");
 
