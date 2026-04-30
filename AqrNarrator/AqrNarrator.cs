@@ -43,7 +43,7 @@ namespace AqrNarrator
             PluginLog.Information("[AqrNarrator] Constructor fired.");
 
             _window = new NarratorWindow();
-            WindowSystem.AddWindow(_window);
+            windowSystem.AddWindow(_window);
             _window.IsOpen = true;
             PluginInterface.UiBuilder.Draw += DrawUI;
             Framework.Update += OnFrameworkUpdate;
