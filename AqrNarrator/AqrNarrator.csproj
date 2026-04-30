@@ -5,7 +5,7 @@
         <Author>NaughtyNeko</Author>
         <Punchline>Narrates A Quest Reborn dialog into a separate window.</Punchline>
         <Description>A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.</Description>
-        <Tags>NNeko,NaughtyNeko</Tags>
+        <Tags>NNeko,NaughtyNeko,UI,Other</Tags>
         <WarningLevel>4</WarningLevel>
         <PackageLicenseExpression>APGL-3.0-or-later</PackageLicenseExpression>
     </PropertyGroup>
@@ -23,7 +23,6 @@
         <InformationalVersion>$(GitVersion)</InformationalVersion>
     </PropertyGroup>
 
-
     <PropertyGroup>
         <Deterministic>true</Deterministic>
         <CopyLocalLockfileAssemblies>true</CopyLocalLockfileAssemblies>
@@ -33,18 +32,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Content Include=".\images\*.*">
-            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-        </Content>
-
         <Content Include="Data\NNeko.png" />
-
         <Content Include="AqrNarrator.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="ECommons" Version="3.2.0.6" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,7 +44,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Update="DalamudPackager" Version="15.0.0" />
         <PackageReference Update="DotNet.ReproducibleBuilds" Version="2.0.2" />
     </ItemGroup>
 </Project>

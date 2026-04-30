@@ -2,7 +2,6 @@ using Dalamud.Game.Command;
 using Dalamud.Interface.Windowing;
 using Dalamud.IoC;
 using Dalamud.Plugin;
-//using Dalamud.Plugin.Ipc;
 using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Component.GUI;
 using System.Reflection;
@@ -43,7 +42,8 @@ namespace AqrNarrator
             PluginLog.Information("[AqrNarrator] Constructor fired.");
 
             _window = new NarratorWindow();
-            windowSystem.AddWindow(_window);
+            WindowSystem = windowSystem;
+            WindowSystem.AddWindow(_window);
             _window.IsOpen = true;
             PluginInterface.UiBuilder.Draw += DrawUI;
             Framework.Update += OnFrameworkUpdate;
