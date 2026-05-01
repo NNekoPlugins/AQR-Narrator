@@ -9,12 +9,32 @@ public class NarratorWindow : Window
     private readonly List<string> _lines = new();
 
     public NarratorWindow()
-        : base("AQR Narrator", ImGuiWindowFlags.AlwaysVerticalScrollbar | ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse)
+        : base("AQR Narrator", ImGuiWindowFlags.None)
     {
-        BgAlpha = 0.75f;
-        Size = new Vector2(575, 100);
+
+        SizeConstraints = new WindowSizeConstraints
+        {
+            MinimumSize = new Vector2(575, 100),
+            MaximumSize = new Vector2(575, float.MaxValue)
+        };
+
+        Size = SizeConstraints.Value.MinimumSize;
+        SizeCondition = ImGuiCond.Always;
+
         Position = new Vector2(25, 900);
+        PositionCondition = ImGuiCond.Appearing;
+
+        DisableFadeInFadeOut = false;
+
+        AllowClickthrough = true;
+        IsClickthrough = true;
+
+        AllowPinning = true;
+        IsPinned = true;
+
+        ShowCloseButton = true;
         RespectCloseHotkey = false;
+
         if (ImGui.Button("Clear Log"))
         {
             ClearNarratorWindow();
@@ -32,6 +52,7 @@ public class NarratorWindow : Window
     public override void Draw()
     {
         ImGui.BeginChild("scroll", new Vector2(0, 0), false, ImGuiWindowFlags.AlwaysVerticalScrollbar);
+        BgAlpha = 0.75f;
 
         var ready = AqrNarrator.AqrReady == true;
         ImGui.TextColored(ready ? new Vector4(0, 1, 0, 1) : new Vector4(1, 1, 0, 1), ready ? "AQR: READY" : "AQR: NOT RESOLVED");

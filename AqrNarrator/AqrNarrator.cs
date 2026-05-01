@@ -25,7 +25,6 @@ namespace AqrNarrator
         private FieldInfo? _fieldText;
         private FieldInfo? _fieldName;
         private PropertyInfo? _propIsOpen;
-        //private ICallGateSubscriber<string, object>? _chat2AddLine;
 
         public static bool AqrReady { get; private set; } = false;
 
@@ -46,7 +45,6 @@ namespace AqrNarrator
             _window.IsOpen = true;
             PluginInterface.UiBuilder.Draw += DrawUI;
             Framework.Update += OnFrameworkUpdate;
-            //_chat2AddLine = PluginInterface.GetIpcSubscriber<string, object>("ChatTwo.AddLine");
 
             CommandManager.AddHandler("/aqrwin", new CommandInfo((_, _) =>
             {
@@ -85,6 +83,9 @@ namespace AqrNarrator
         public void Dispose()
         {
             CommandManager.RemoveHandler("/aqrwin");
+            CommandManager.RemoveHandler("/aqrnewquest");
+            CommandManager.RemoveHandler("/hidechat");
+            CommandManager.RemoveHandler("/showchat");
             Framework.Update -= OnFrameworkUpdate;
             PluginInterface.UiBuilder.Draw -= DrawUI;
             WindowSystem.RemoveAllWindows();
@@ -284,9 +285,6 @@ namespace AqrNarrator
 
             // Send to narrator window
             _window.AddLine(formatted);
-
-            // Send to Chat2
-            //_chat2AddLine?.InvokeFunc(formatted);
 
             // Log to file
             LogToFile(formatted);
