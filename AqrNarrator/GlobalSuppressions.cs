@@ -20,3 +20,7 @@ using System.Diagnostics.CodeAnalysis;
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~P:AqrNarrator.AqrNarrator.PluginInterface")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~P:AqrNarrator.AqrNarrator.PluginLog")]
 [assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~P:AqrNarrator.AqrNarrator.WindowSystem")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~F:AqrNarrator.AqrNarrator._sessionPath")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:AqrNarrator.AqrNarrator.#ctor(Dalamud.Plugin.IDalamudPluginInterface,Dalamud.Interface.Windowing.IWindowSystem)")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:AqrNarrator.NarratorWindow.#ctor")]
+[assembly: SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>", Scope = "member", Target = "~M:AqrNarrator.NarratorWindow.Draw")]

@@ -33,7 +33,7 @@ public class NarratorWindow : Window
     {
         ImGui.BeginChild("scroll", new Vector2(0, 0), false, ImGuiWindowFlags.AlwaysVerticalScrollbar);
 
-        bool ready = AqrNarrator.AqrReady == true;
+        var ready = AqrNarrator.AqrReady == true;
         ImGui.TextColored(ready ? new Vector4(0, 1, 0, 1) : new Vector4(1, 1, 0, 1), ready ? "AQR: READY" : "AQR: NOT RESOLVED");
 
         foreach (var line in _lines)

@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
     <PropertyGroup>
-        <Name>AqrNarrator</Name>
+        <Name>NNeko's AQR Narrator</Name>
         <Author>NaughtyNeko</Author>
         <Punchline>Narrates A Quest Reborn dialog into a separate window.</Punchline>
         <Description>A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.</Description>
-        <Tags>NNeko,NaughtyNeko,UI,Other</Tags>
+        <Tags>NNeko,NaughtyNeko,UI,Other,Quest,Narration,RP,AQR</Tags>
         <WarningLevel>4</WarningLevel>
         <PackageLicenseExpression>APGL-3.0-or-later</PackageLicenseExpression>
-    </PropertyGroup>
-
-    <!-- Version stamping (GitVersion supplied by CI workflow) -->
-    <PropertyGroup>
+        <!-- Version stamping (GitVersion supplied by CI workflow) -->
         <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-
         <!-- Fallback version if GitVersion is not provided -->
         <Version>0.0.0</Version>
-
         <!-- These will be set by /p:GitVersion=1.2.3 in your workflow -->
         <AssemblyVersion>$(GitVersion)</AssemblyVersion>
         <FileVersion>$(GitVersion)</FileVersion>
         <InformationalVersion>$(GitVersion)</InformationalVersion>
-    </PropertyGroup>
-
-    <PropertyGroup>
         <Deterministic>true</Deterministic>
         <CopyLocalLockfileAssemblies>true</CopyLocalLockfileAssemblies>
         <EnableWindowsTargeting>true</EnableWindowsTargeting>
@@ -34,16 +26,10 @@
     <ItemGroup>
         <Content Include="Data\NNeko.png" />
         <Content Include="AqrNarrator.json" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Update="AqrNarrator.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <EmbeddedResource Include="Data\NNeko.png" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Update="DotNet.ReproducibleBuilds" Version="2.0.2" />
     </ItemGroup>
 </Project>

@@ -10,16 +10,16 @@ namespace AqrNarrator
 {
     public sealed class AqrNarrator : IDalamudPlugin
     {
+        #region
         [PluginService] internal static IPluginLog PluginLog { get; private set; } = null!;
         [PluginService] internal static IFramework Framework { get; private set; } = null!;
         [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
         [PluginService] internal static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
-        [PluginService] internal static IWindowSystem WindowSystem {  get; private set; } = null!;
+        [PluginService] internal static IWindowSystem WindowSystem { get; private set; } = null!;
         [PluginService] internal static IGameGui GameGui { get; private set; } = null!;
+        #endregion
 
-
-        //public static WindowSystem WindowSystem = new("AqrNarrator");
-        private NarratorWindow _window;
+        private readonly NarratorWindow _window;
 
         private object? _eventWindow;
         private FieldInfo? _fieldText;
@@ -42,8 +42,7 @@ namespace AqrNarrator
             PluginLog.Information("[AqrNarrator] Constructor fired.");
 
             _window = new NarratorWindow();
-            WindowSystem = windowSystem;
-            WindowSystem.AddWindow(_window);
+            windowSystem.AddWindow(_window);
             _window.IsOpen = true;
             PluginInterface.UiBuilder.Draw += DrawUI;
             Framework.Update += OnFrameworkUpdate;
@@ -96,14 +95,17 @@ namespace AqrNarrator
             if (!EnsureAqrResolved())
                 return;
 
-            bool isOpen = (bool)(_propIsOpen?.GetValue(_eventWindow) ?? false);
-            string current = _fieldText?.GetValue(_eventWindow) as string ?? "";
-            string name = _fieldName?.GetValue(_eventWindow) as string ?? "Unknown";
+            if (_eventWindow == null)
+                return;
+
+            var isOpen = (bool)(_propIsOpen?.GetValue(_eventWindow) ?? false);
+            var current = _fieldText?.GetValue(_eventWindow) as string ?? "";
+            var name = _fieldName?.GetValue(_eventWindow) as string ?? "Unknown";
 
             // AQR's full line being typed
             var targetField = _eventWindow.GetType().GetField("_targetText", BindingFlags.Instance | BindingFlags.NonPublic);
 
-            string target = targetField?.GetValue(_eventWindow) as string ?? "";
+            var target = targetField?.GetValue(_eventWindow) as string ?? "";
 
             //
             // CASE 1: Window just opened
@@ -271,14 +273,14 @@ namespace AqrNarrator
             PluginLog.Information("[AqrNarrator] Session cleared (new quest or reset).");
         }
 
-        public void DrawUI()
+        public static void DrawUI()
         {
             WindowSystem.Draw();
         }
 
         private void PrintNarration(string npc, string line)
         {
-            string formatted = $"◆ {npc}: {line}";
+            var formatted = $"◆ {npc}: {line}";
 
             // Send to narrator window
             _window.AddLine(formatted);
@@ -296,7 +298,7 @@ namespace AqrNarrator
             HideAddon("ChatLog", visible);
 
             // Hide all chat panels (0–3)
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < 4; i++)
             {
                 HideAddon($"ChatLogPanel_{i}", visible);
             }
