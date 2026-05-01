@@ -10,9 +10,6 @@
         "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator"
         "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip",
         "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip",
-        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip",
-        "LoadRequiredState": "0",
-        "CanUnloadAsync": "false",
-        "LoadSync": "true"
+        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip"
     }
 ]
