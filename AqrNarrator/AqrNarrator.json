@@ -5,6 +5,6 @@
     "Description": "A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.",
     "Tags": [ "NNeko", "NaughtyNeko", "UI", "Other", "quest", "narration", "rp", "AQR" ],
     "CategoryTags": [ "UI", "Other" ],
-    "IconUrl": "https://github.com/NNekoPlugins/AqrNarrator/Data/NNeko.png",
+    "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/AqrNarrator/main/AqrNarrator/Data/NNeko.png",
     "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator"
 }
