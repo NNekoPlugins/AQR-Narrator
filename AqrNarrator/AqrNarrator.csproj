@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
     <PropertyGroup>
-        <Name>NNeko's AQR Narrator</Name>
+        <Name>AqrNarrator</Name>
         <Author>NaughtyNeko</Author>
         <Punchline>Narrates A Quest Reborn dialog into a separate window.</Punchline>
         <Description>A companion plugin that forwards A Quest Reborn dialog text into a dedicated window for Chat2 users.</Description>
