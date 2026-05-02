@@ -6,7 +6,7 @@ namespace AqrNarrator;
 
 public class NarratorWindow : Window
 {
-    private readonly List<string> _lines = new();
+    private readonly List<string> _lines = [];
 
     public NarratorWindow()
         : base("AQR Narrator", ImGuiWindowFlags.None)
@@ -34,11 +34,6 @@ public class NarratorWindow : Window
 
         ShowCloseButton = true;
         RespectCloseHotkey = false;
-
-        if (ImGui.Button("Clear Log"))
-        {
-            ClearNarratorWindow();
-        }
     }
 
     public void ClearNarratorWindow()
@@ -51,6 +46,11 @@ public class NarratorWindow : Window
 
     public override void Draw()
     {
+        if (ImGui.Button("Clear Log"))
+        {
+            ClearNarratorWindow();
+        }
+
         ImGui.BeginChild("scroll", new Vector2(0, 0), false, ImGuiWindowFlags.AlwaysVerticalScrollbar);
         BgAlpha = 0.75f;
 

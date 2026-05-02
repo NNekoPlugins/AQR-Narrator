@@ -15,10 +15,10 @@ namespace AqrNarrator
         [PluginService] internal static IFramework Framework { get; private set; } = null!;
         [PluginService] internal static ICommandManager CommandManager { get; private set; } = null!;
         [PluginService] internal static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
-        [PluginService] internal static IWindowSystem WindowSystem { get; private set; } = null!;
         [PluginService] internal static IGameGui GameGui { get; private set; } = null!;
         #endregion
 
+        private readonly WindowSystem windowSystem;
         private readonly NarratorWindow _window;
 
         private object? _eventWindow;
@@ -32,17 +32,19 @@ namespace AqrNarrator
         private string _lastTargetText = "";
         private bool _wasOpenLastFrame = false;
 
-        private readonly string _logPath = Path.Combine(AqrNarrator.PluginInterface.ConfigDirectory.FullName, "narrator_log.txt");
+        private readonly string _logPath = Path.Combine(PluginInterface.ConfigDirectory.FullName, "narrator_log.txt");
         private readonly string _sessionPath = Path.Combine(PluginInterface.ConfigDirectory.FullName, "session_log.txt");
 
+        private DateTime _nextResolveAttempt = DateTime.MinValue;
+        private bool _aqrResolved = false;
 
-        public AqrNarrator(IDalamudPluginInterface pluginInterface, IWindowSystem windowSystem)
+        public AqrNarrator()
         {
             PluginLog.Information("[AqrNarrator] Constructor fired.");
 
             _window = new NarratorWindow();
+            windowSystem = new WindowSystem(PluginInterface.Manifest.InternalName);
             windowSystem.AddWindow(_window);
-            _window.IsOpen = true;
             PluginInterface.UiBuilder.Draw += DrawUI;
             Framework.Update += OnFrameworkUpdate;
 
@@ -88,7 +90,7 @@ namespace AqrNarrator
             CommandManager.RemoveHandler("/showchat");
             Framework.Update -= OnFrameworkUpdate;
             PluginInterface.UiBuilder.Draw -= DrawUI;
-            WindowSystem.RemoveAllWindows();
+            windowSystem.RemoveAllWindows();
         }
 
         private void OnFrameworkUpdate(IFramework _)
@@ -177,6 +179,12 @@ namespace AqrNarrator
         {
             if (_eventWindow != null)
                 return true;
+
+            // Only try once every 7 seconds
+            if (DateTime.UtcNow < _nextResolveAttempt)
+                return false;
+
+            _nextResolveAttempt = DateTime.UtcNow.AddSeconds(7);
 
             try
             {
@@ -274,9 +282,9 @@ namespace AqrNarrator
             PluginLog.Information("[AqrNarrator] Session cleared (new quest or reset).");
         }
 
-        public static void DrawUI()
+        public void DrawUI()
         {
-            WindowSystem.Draw();
+            windowSystem.Draw();
         }
 
         private void PrintNarration(string npc, string line)
