@@ -9,8 +9,8 @@
         "CategoryTags": [ "UI", "Other" ],
         "IconUrl": "https://raw.githubusercontent.com/NNekoPlugins/AqrNarrator/main/AqrNarrator/Data/NNeko.png",
         "RepoUrl": "https://github.com/NNekoPlugins/AqrNarrator",
-        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip",
-        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip",
-        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.5/latest.zip"
+        "DownloadLinkInstall": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.7/latest.zip",
+        "DownloadLinkTesting": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.7/latest.zip",
+        "DownloadLinkUpdate": "https://github.com/NNekoPlugins/AqrNarrator/releases/download/v0.0.0.7/latest.zip"
     }
 ]
