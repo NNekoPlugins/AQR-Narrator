@@ -11,7 +11,6 @@ public class NarratorWindow : Window
     public NarratorWindow()
         : base("AQR Narrator", ImGuiWindowFlags.None)
     {
-
         SizeConstraints = new WindowSizeConstraints
         {
             MinimumSize = new Vector2(575, 100),
@@ -19,19 +18,14 @@ public class NarratorWindow : Window
         };
 
         Size = SizeConstraints.Value.MinimumSize;
-        SizeCondition = ImGuiCond.Always;
+        SizeCondition = ImGuiCond.FirstUseEver;
 
         Position = new Vector2(25, 900);
-        PositionCondition = ImGuiCond.Appearing;
+        PositionCondition = ImGuiCond.FirstUseEver;
 
-        DisableFadeInFadeOut = false;
-
+        AllowBackgroundBlur = false;
         AllowClickthrough = true;
-        IsClickthrough = true;
-
         AllowPinning = true;
-        IsPinned = true;
-
         ShowCloseButton = true;
         RespectCloseHotkey = false;
     }
@@ -46,6 +40,8 @@ public class NarratorWindow : Window
 
     public override void Draw()
     {
+        var ready = AqrNarrator.AqrReady == true;
+        ImGui.TextColored(ready ? new Vector4(0, 1, 0, 1) : new Vector4(1, 1, 0, 1), ready ? "AQR: READY" : "AQR: NOT RESOLVED");
         if (ImGui.Button("Clear Log"))
         {
             ClearNarratorWindow();
@@ -53,10 +49,6 @@ public class NarratorWindow : Window
 
         ImGui.BeginChild("scroll", new Vector2(0, 0), false, ImGuiWindowFlags.AlwaysVerticalScrollbar);
         BgAlpha = 0.75f;
-
-        var ready = AqrNarrator.AqrReady == true;
-        ImGui.TextColored(ready ? new Vector4(0, 1, 0, 1) : new Vector4(1, 1, 0, 1), ready ? "AQR: READY" : "AQR: NOT RESOLVED");
-
         foreach (var line in _lines)
             ImGui.TextWrapped(line);
 
